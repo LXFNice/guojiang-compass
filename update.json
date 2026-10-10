@@ -1,7 +1,7 @@
 {
-  "version": 1,
+  "version": 2,
   "forceupdate": 0,
-  "url": "https://raw.githubusercontent.com/LXFNice/guojiang-compass/main/GuoJiangCompass.apk",
+  "url": "https://github.com/LXFNice/guojiang-compass/releases/download/v1.0/GuoJiangCompass.apk",
   "message": "果酱指南针研究版更新",
   "title": "发现新版本"
 }
