@@ -29,18 +29,29 @@
 
 ## 安装
 
-从 [Releases](https://github.com/LXFNice/guojiang-compass/releases) 下载 `GuoJiangCompass.apk` 安装。
+从 [Releases](https://github.com/LXFNice/guojiang-compass/releases/latest) 下载 `GuoJiangCompass.apk` 安装（认准标着 **Latest** 的那个，其余是历史版本）。
 
 > **2.0 起包名由 `com.study.research.test` 改为 `com.guojiang.compass`**，与旧版 1.x 无法覆盖升级，请先卸载旧版再安装。
 > 首次使用请允许「位置信息」权限（否则主界面看不到经纬度）；下载更新后系统会要求授予「安装未知应用」权限。
 
 ## 如何发布新版本
 
-1. 在 [Releases](https://github.com/LXFNice/guojiang-compass/releases) 里新建一个 release（或替换已有 release 中的 `GuoJiangCompass.apk` 资产），资产名保持 `GuoJiangCompass.apk`，并确保它是**最新发布**（latest）
-2. 修改根目录 `update.json`：`version` 每次 **+1**，`message` 写本次更新日志
-3. 提交到 `main` 分支即可生效（App 读取的是 jsdelivr 的 `@main`，分支缓存约 12 小时）
+> **原则：旧的留着，新的往后加。** 每个版本单独建一个 release，历史版本都保留在页面上，谁想装哪个版本都能找到；只有 README / CHANGELOG 这类文档才直接改。
 
-> **下载地址固定为** `https://github.com/LXFNice/guojiang-compass/releases/latest/download/GuoJiangCompass.apk`（GitHub 的 latest 重定向），所以换版本时**不需要改 `update.json` 里的 `url`**。
+1. 在 [Releases](https://github.com/LXFNice/guojiang-compass/releases) 点 **Draft a new release**
+   - **Choose a tag** 填新版本号（如 `v2.1`），Target 选 `main`
+   - **Release title** 写「果酱指南针 2.1」
+   - 上传资产，文件名固定用 `GuoJiangCompass.apk`
+   - 正文写本次更新内容（可直接抄 CHANGELOG 对应段落）
+2. 点 **Publish release**，确认它显示为 **Latest**（GitHub 默认把最新发布的当作 latest；**不要**勾 Pre-release，否则 latest 不会指向它）
+3. 同步文档：`update.json` 的 `version` **+1**、`message` 写本次更新日志；`CHANGELOG.md` 加一段
+4. 提交到 `main`，然后**清一次 jsdelivr 缓存**（否则最长要等约 12 小时才生效），浏览器直接打开：
+   ```
+   https://purge.jsdelivr.net/gh/LXFNice/guojiang-compass@main/update.json
+   ```
+   返回 `"status": "finished"` 就是清成功。
+
+> **下载地址固定为** `https://github.com/LXFNice/guojiang-compass/releases/latest/download/GuoJiangCompass.apk`——它自动指向「最新 release」里的同名资产，所以**发新版本完全不用改 `update.json` 里的 `url`**，也不需要动任何旧 release。
 > 判断逻辑：App 拿 `update.json` 的 `version` 与本机 **versionCode** 比较，`version > versionCode` 时提示更新。
 > 历史说明：1.x 客户端读取的是 `@vlatest` 标签；2.0 起改读 `@main`，`vlatest` 标签已弃用。
 
@@ -53,7 +64,7 @@
 | `docs/usage.md` | 使用说明 |
 | `docs/agreement.md` | 服务协议 |
 | `docs/privacy.md` | 隐私政策 |
-| [Releases](https://github.com/LXFNice/guojiang-compass/releases) | 安装包 `GuoJiangCompass.apk` |
+| [Releases](https://github.com/LXFNice/guojiang-compass/releases) | 安装包 `GuoJiangCompass.apk`（每个版本一个 release，历史版本保留） |
 
 ## 免责声明
 
