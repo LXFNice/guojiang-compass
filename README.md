@@ -10,29 +10,50 @@
 - 仅供个人学习、研究、技术交流使用
 - 请勿用于任何商业用途
 
+## 基本信息
+
+| 项目 | 值 |
+| --- | --- |
+| 应用名 | 果酱指南针 |
+| 包名 | `com.guojiang.compass` |
+| 当前版本 | 2.0（versionCode 2） |
+| minSdk / targetSdk | 21 / 31 |
+| 签名方案 | V1 / V2 / V3 |
+
 ## 功能
 
-- 指南针 / 地理罗盘
+- 指南针 / 地理罗盘 / 水平仪
 - 罗盘校准
-- 自动检查更新（读取本仓库的 `update.json`）
+- 主界面显示经纬度与磁场强度
+- 自动检查更新（读取本仓库 `main` 分支的 `update.json`），下载过程显示百分比并可一键安装
+
+## 安装
+
+从 [Releases](https://github.com/LXFNice/guojiang-compass/releases) 下载 `GuoJiangCompass.apk` 安装。
+
+> **2.0 起包名由 `com.study.research.test` 改为 `com.guojiang.compass`**，与旧版 1.x 无法覆盖升级，请先卸载旧版再安装。
+> 首次使用请允许「位置信息」权限（否则主界面看不到经纬度）；下载更新后系统会要求授予「安装未知应用」权限。
 
 ## 如何发布新版本
 
-1. 把新的 `GuoJiangCompass.apk` 上传到本仓库**根目录**（覆盖旧文件）
-2. 修改根目录 `update.json` 里的 `version` 字段（当前为 `1`，每次发版 **+1**）
-3. 用户在 App「我的 → 关于」里点「检查更新」，即可发现新版本并下载安装
+1. 在 [Releases](https://github.com/LXFNice/guojiang-compass/releases) 里新建一个 release（或替换已有 release 中的 `GuoJiangCompass.apk` 资产），资产名保持 `GuoJiangCompass.apk`，并确保它是**最新发布**（latest）
+2. 修改根目录 `update.json`：`version` 每次 **+1**，`message` 写本次更新日志
+3. 提交到 `main` 分支即可生效（App 读取的是 jsdelivr 的 `@main`，分支缓存约 12 小时）
 
-> 判断逻辑：App 拿 `update.json` 的 `version` 与本机版本号比较，`version > 本机版本号` 时提示更新。
+> **下载地址固定为** `https://github.com/LXFNice/guojiang-compass/releases/latest/download/GuoJiangCompass.apk`（GitHub 的 latest 重定向），所以换版本时**不需要改 `update.json` 里的 `url`**。
+> 判断逻辑：App 拿 `update.json` 的 `version` 与本机 **versionCode** 比较，`version > versionCode` 时提示更新。
+> 历史说明：1.x 客户端读取的是 `@vlatest` 标签；2.0 起改读 `@main`，`vlatest` 标签已弃用。
 
 ## 目录结构
 
-| 文件 | 说明 |
+| 位置 | 说明 |
 | --- | --- |
-| `GuoJiangCompass.apk` | 安装包本体 |
 | `update.json` | 版本清单（供 App 检查更新读取） |
+| `CHANGELOG.md` | 更新日志 |
 | `docs/usage.md` | 使用说明 |
 | `docs/agreement.md` | 服务协议 |
 | `docs/privacy.md` | 隐私政策 |
+| [Releases](https://github.com/LXFNice/guojiang-compass/releases) | 安装包 `GuoJiangCompass.apk` |
 
 ## 免责声明
 
